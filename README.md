@@ -1,8 +1,11 @@
-# PlayStoreApi
-This PHP library provides an unofficial Google Play Store API
+# Play Extractor
+This project is a fork of [PlayStoreApi project][1] but isn't related in any way with that project. Thanks to [RedInput][2], developer of the original library on which this is based.
+
+Play Extractor provides a Composer PHP library to extract info from Play Store for differents items like music albums, apps, movies and more.  
+Don't requires any kind of authentication and support all the languages and countries availables on Play Store web.
 
 ## Installation
-Copy the `library` folder into your project.
+Coming soon...
 
 ## Usage
 First of all include the `API.php` file into your PHP script:
@@ -228,6 +231,5 @@ If the search doesn't return any result or the data type isn't available in the 
 }
 ```
 
-## TO-DO
-- Add functionality to retrieve only an object based on their IDs
-- Add methods to retrieve "Top charts" and "New arrivals" listings of every data type
+[1]: https://github.com/RedInput/PlayStoreApi
+[2]: https://github.com/RedInput
