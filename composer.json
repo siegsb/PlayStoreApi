@@ -29,7 +29,7 @@
         "source": "https://github.com/siegsb/play-extractor/releases"
     },
     "require": {
-        "php": ">=5.5"
+        "php": ">=5.4"
     },
     "require-dev": {
         "phpunit/phpunit": ">=4.8",

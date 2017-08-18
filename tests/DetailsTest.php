@@ -2,9 +2,8 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use \SiegSB\PlayExtractor;
-use \PHPUnit\Framework\TestCase;
 
-class DetailsTest extends TestCase
+class DetailsTest extends PHPUnit_Framework_TestCase
 {
 
     private $playExtractor;
