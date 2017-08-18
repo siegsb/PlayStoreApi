@@ -11,7 +11,7 @@ require_once __DIR__ . '/PlayExtractor/Details.php';
  * @author RedInput
  * @author Paris N. Baltazar Salguero
  *         @licence Apache 2.0
- * @version 1.0.2
+ * @version 1.0.3
  * @link https://github.com/siegsb/play-extractor
  */
 class PlayExtractor
