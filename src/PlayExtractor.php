@@ -2,6 +2,7 @@
 namespace SiegSB;
 
 require_once __DIR__ . '/PlayExtractor/Details.php';
+require_once __DIR__ . '/PlayExtractor/Utils/PlayExtractorException.php';
 
 /**
  * Request info from Play Store like an API supporting different languages and countries.
@@ -495,6 +496,11 @@ class PlayExtractor
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $html = curl_exec($curl);
+        if(!curl_errno($curl)) {
+            if(curl_getinfo($curl, CURLINFO_HTTP_CODE) !== 200) {
+                throw new PlayExtractor\Utils\PlayExtractorException('This content is not in Play Store', 404);
+            }
+        }
         curl_close($curl);
         return $html;
     }
