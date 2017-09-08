@@ -57,7 +57,13 @@ try {
     echo "<p>Book details: <br />";
     print json_encode($book);
     echo "</p>";
-} catch(Exception $e) {
-    // print the message of the exception
-    print_r($e);
+
+    /**
+     * Throwing an exception when the app is not in Play Store
+    */
+    $app_exception = $playExtractor->details->app('exception.test');
+
+} catch(\SiegSB\PlayExtractor\Utils\PlayExtractorException $e) {
+    // print the exception
+    echo $e->__toString();
 }
