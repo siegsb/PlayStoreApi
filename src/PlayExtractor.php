@@ -12,7 +12,7 @@ require_once __DIR__ . '/PlayExtractor/Utils/PlayExtractorException.php';
  * @author RedInput
  * @author Paris N. Baltazar Salguero
  *         @licence Apache 2.0
- * @version 1.0.3
+ * @version 1.0.4
  * @link https://github.com/siegsb/play-extractor
  */
 class PlayExtractor
