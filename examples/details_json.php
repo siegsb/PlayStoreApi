@@ -1,7 +1,7 @@
 <?php
 
 // Importing the autoload
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../src/PlayExtractor.php';
 
 // Define the namespace to use PlayExtractor
 use \SiegSB\PlayExtractor;
@@ -21,9 +21,9 @@ try {
     */
     $album = $playExtractor->details->album('B3elnigbzxoss3cmrfwgyxtyv2m');
     // Print the album details as JSON object
-    echo "<p>Album details: <br />";
-    print json_encode($album);
-    echo "</p>";
+    echo "Album details:\n";
+    print json_encode($album, JSON_PRETTY_PRINT|JSON_NUMERIC_CHECK|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+    echo "\n\n";
 
     /**
      * Getting details for app
@@ -32,9 +32,9 @@ try {
     */
     $app = $playExtractor->details->app('com.whatsapp');
     // Print the app details as JSON object
-    echo "<p>App details: <br />";
-    print json_encode($app);
-    echo "</p>";
+    echo "App details:\n";
+    print json_encode($app, JSON_PRETTY_PRINT|JSON_NUMERIC_CHECK|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+    echo "\n\n";
 
     /**
      * Getting details for artist
@@ -43,9 +43,9 @@ try {
     */
     $artist = $playExtractor->details->artist('Ae3hkk6q7nm6zchy7ru4u5sxdle');
     // Print the artist details as JSON object
-    echo "<p>Artist details: <br />";
-    print json_encode($artist);
-    echo "</p>";
+    echo "Artist details:\n";
+    print json_encode($artist, JSON_PRETTY_PRINT|JSON_NUMERIC_CHECK|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+    echo "\n\n";
 
     /**
      * Getting details for book
@@ -54,9 +54,9 @@ try {
     */
     $book = $playExtractor->details->book('vfFhxYwjgK8C');
     // Print the book details as JSON object
-    echo "<p>Book details: <br />";
-    print json_encode($book);
-    echo "</p>";
+    echo "Book details:\n";
+    print json_encode($book, JSON_PRETTY_PRINT|JSON_NUMERIC_CHECK|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+    echo "\n\n";
 
     /**
      * Throwing an exception when the app is not in Play Store
