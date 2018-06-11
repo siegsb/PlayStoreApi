@@ -112,44 +112,80 @@ class Details
         $url = 'https://play.google.com/store/apps/details?id=' . $package . '&gl=' . $this->bridge->getCountry() . '&hl=' . $this->bridge->getLanguage();
         $html = $this->bridge->curlExec($url);
         $result = $this->processDetails($html);
-        $icon = substr($result->find('.cover-image', 0)->src, 0, - 5);
-        $name = $result->find('.id-app-title', 0)->plaintext;
-        $developer = $result->find('a[class=document-subtitle primary]', 0)->first_child()->plaintext;
+        $icon = substr($result->find('img[class=T75of ujDFqe]', 0)->src, 0, -5);
+        $name = $result->find('.AHFaub', 0)->plaintext;
+        $category = $result->find('a[itemprop=genre]', 0)->plaintext;
+        $developer = $result->find('a[class=hrTbp R8zArc]', 0)->plaintext;
+
         if ($result->find('meta[itemprop=price]', 0) != null) {
             $price = $result->find('meta[itemprop=price]', 0)->content;
         }
-        if ($result->find('.description', 0) != null) {
-            if ($result->find('.description', 0)->find('div[itemprop=description]', 0) != null) {
-                $description = $result->find('.description', 0)
-                    ->find('div[itemprop=description]', 0)
-                    ->first_child()->plaintext;
-            }
+
+        if ($result->find('meta[itemprop=description]', 0) != null) {
+            $description = $result->find('meta[itemprop=description]', 0)->content;
         }
-        $category = trim($result->find('a[class=document-subtitle category]', 0)->plaintext);
+
         if ($result->find('meta[itemprop=ratingValue]', 0) != null) {
             $rating_value = floatval($result->find('meta[itemprop=ratingValue]', 0)->content);
         }
-        if ($result->find('meta[itemprop=ratingCount]', 0) != null) {
-            $rating_count = intval($result->find('meta[itemprop=ratingCount]', 0)->content);
+
+        if ($result->find('meta[itemprop=reviewCount]', 0) != null) {
+            $rating_count = intval($result->find('meta[itemprop=reviewCount]', 0)->content);
         }
-        if ($result->find('div[itemprop=datePublished]', 0) != null) {
-            $date_updated = $result->find('div[itemprop=datePublished]', 0)->plaintext;
+
+        if ($result->find('div[class=xyOfqd]', 0)->find('div[class=hAyfc]', 0) != null) {
+            $date_updated = $result->find('div[class=xyOfqd]', 0)
+                ->find('div[class=hAyfc]', 0)
+                ->find('span[class=htlgb]', 0)
+                ->plaintext;
         }
-        if ($result->find('div[itemprop=fileSize]', 0) != null) {
-            $file_size = $result->find('div[itemprop=fileSize]', 0)->plaintext;
+
+        if ($result->find('div[class=xyOfqd]', 0)->find('div[class=hAyfc]', 1) != null) {
+            $file_size = $result->find('div[class=xyOfqd]', 0)
+                ->find('div[class=hAyfc]', 1)
+                ->find('span[class=htlgb]', 0)
+                ->plaintext;
         }
-        if ($result->find('div[itemprop=numDownloads]', 0) != null) {
-            $num_downloads = $result->find('div[itemprop=numDownloads]', 0)->plaintext;
+
+        if ($result->find('div[class=xyOfqd]', 0)->find('div[class=hAyfc]', 2) != null) {
+            $num_downloads = $result->find('div[class=xyOfqd]', 0)
+                ->find('div[class=hAyfc]', 2)
+                ->find('span[class=htlgb]', 0)
+                ->plaintext;
         }
-        if ($result->find('div[itemprop=softwareVersion]', 0) != null) {
-            $version = $result->find('div[itemprop=softwareVersion]', 0)->plaintext;
+
+        if ($result->find('div[class=xyOfqd]', 0)->find('div[class=hAyfc]', 3) != null) {
+            $version = $result->find('div[class=xyOfqd]', 0)
+                ->find('div[class=hAyfc]', 3)
+                ->find('span[class=htlgb]', 0)
+                ->plaintext;
         }
-        if ($result->find('div[itemprop=operatingSystems]', 0) != null) {
-            $req_android = $result->find('div[itemprop=operatingSystems]', 0)->plaintext;
+
+        if ($result->find('div[class=xyOfqd]', 0)->find('div[class=hAyfc]', 4) != null) {
+            $req_android = $result->find('div[class=xyOfqd]', 0)
+                ->find('div[class=hAyfc]', 4)
+                ->find('span[class=htlgb]', 0)
+                ->plaintext;
         }
-        if ($result->find('div[itemprop=contentRating]', 0) != null) {
-            $content_rating = $result->find('div[itemprop=contentRating]', 0)->plaintext;
+
+        if ($result->find('img[class=T75of pTsWIc]', 0) != null) {
+            $content_rating = $result->find('img[class=T75of pTsWIc]', 0)->alt;
         }
+
+        if ($result->find('div[class=xyOfqd]', 0)->find('div[class=hAyfc]', 7) != null) {
+            $in_app_prices = $result->find('div[class=xyOfqd]', 0)
+                ->find('div[class=hAyfc]', 7)
+                ->find('span[class=htlgb]', 0)
+                ->plaintext;
+            if (!preg_match('/\$[0-9\.]+ - \$[0-9.]+/', $in_app_prices)) {
+                $in_app_prices = null;
+                }
+        }
+
+        if ($result->find('div[class=rxic6]', 0) != null) {
+            $features = explode('&middot;', $result->find('div[class=rxic6]', 0)->plaintext);
+        }
+
         $app = new Data\App();
         $app->setPackage($package);
         $app->setUrl($url);
@@ -194,6 +230,12 @@ class Details
         }
         if (isset($content_rating)) {
             $app->setContentRating($content_rating);
+        }
+        if (isset($features)) {
+            $app->setFeatures($features);
+        }
+        if (isset($in_app_prices)) {
+            $app->setInAppPrices($in_app_prices);
         }
         $this->htmldom->clear();
         return $app;
