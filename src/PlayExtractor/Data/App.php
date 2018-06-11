@@ -15,29 +15,33 @@ class App implements \JsonSerializable
 
     private $developer;
 
+    private $category;
+
+    private $version;
+
+    private $date_updated;
+
+    private $content_rating;
+
+    private $features;
+
     private $price;
 
-    private $url;
-
-    private $description;
-
-    private $category;
+    private $in_app_prices;
 
     private $rating_value;
 
     private $rating_count;
 
-    private $file_size;
-
-    private $date_updated;
-
     private $num_downloads;
 
-    private $version;
+    private $file_size;
 
     private $required_android;
 
-    private $content_rating;
+    private $description;
+
+    private $url;
 
     /**
      * Gets the package name
@@ -176,7 +180,8 @@ class App implements \JsonSerializable
      *
      * @return $description string
     */
-    public function getDescription(){
+    public function getDescription()
+    {
         return $this->description;
     }
 
@@ -185,7 +190,8 @@ class App implements \JsonSerializable
      *
      * @param $description string
     */
-    public function setDescription($description){
+    public function setDescription($description)
+    {
         $this->description = $description;
     }
 
@@ -194,7 +200,8 @@ class App implements \JsonSerializable
      *
      * @return $category string
     */
-    public function getCategory(){
+    public function getCategory()
+    {
         return $this->category;
     }
 
@@ -203,7 +210,8 @@ class App implements \JsonSerializable
      *
      * @param $category string
     */
-    public function setCategory($category){
+    public function setCategory($category)
+    {
         $category = trim($category);
         $this->category = $category;
     }
@@ -213,7 +221,8 @@ class App implements \JsonSerializable
      *
      * @return $rating_value float
     */
-    public function getRatingValue(){
+    public function getRatingValue()
+    {
         return $this->rating_value;
     }
 
@@ -222,7 +231,8 @@ class App implements \JsonSerializable
      *
      * @param $rating_value float
     */
-    public function setRatingValue($rating_value){
+    public function setRatingValue($rating_value)
+    {
         $this->rating_value = $rating_value;
     }
 
@@ -231,7 +241,8 @@ class App implements \JsonSerializable
      *
      * @return $rating_count string
     */
-    public function getRatingCount(){
+    public function getRatingCount()
+    {
         return $this->rating_count;
     }
 
@@ -240,7 +251,8 @@ class App implements \JsonSerializable
      *
      * @param $rating_count string
     */
-    public function setRatingCount($rating_count){
+    public function setRatingCount($rating_count)
+    {
         $this->rating_count = $rating_count;
     }
 
@@ -249,7 +261,8 @@ class App implements \JsonSerializable
      *
      * @return $file_size string
     */
-    public function getFileSize(){
+    public function getFileSize()
+    {
         return $this->file_size;
     }
 
@@ -258,7 +271,8 @@ class App implements \JsonSerializable
      *
      * @param $file_size string
     */
-    public function setFileSize($file_size){
+    public function setFileSize($file_size)
+    {
         $file_size=trim($file_size);
         $this->file_size = $file_size;
     }
@@ -268,7 +282,8 @@ class App implements \JsonSerializable
      *
      * @return $data_updated string
     */
-    public function getDateUpdated(){
+    public function getDateUpdated()
+    {
         return $this->date_updated;
     }
 
@@ -277,7 +292,8 @@ class App implements \JsonSerializable
      *
      * @param $data_updated string
     */
-    public function setDateUpdated($date_updated){
+    public function setDateUpdated($date_updated)
+    {
         $this->date_updated = $date_updated;
     }
 
@@ -286,7 +302,8 @@ class App implements \JsonSerializable
      *
      * @return $num_downloads string
     */
-    public function getNumDownloads(){
+    public function getNumDownloads()
+    {
         return $this->num_downloads;
     }
 
@@ -295,7 +312,8 @@ class App implements \JsonSerializable
      *
      * @param $num_downloads string
     */
-    public function setNumDownloads($num_downloads){
+    public function setNumDownloads($num_downloads)
+    {
         $num_downloads=trim($num_downloads);
         $this->num_downloads = $num_downloads;
     }
@@ -305,7 +323,8 @@ class App implements \JsonSerializable
      *
      * @return $version string
     */
-    public function getVersion(){
+    public function getVersion()
+    {
         return $this->version;
     }
 
@@ -314,7 +333,8 @@ class App implements \JsonSerializable
      *
      * @param $version string
     */
-    public function setVersion($version){
+    public function setVersion($version)
+    {
         $version=trim($version);
         $this->version = $version;
     }
@@ -324,7 +344,8 @@ class App implements \JsonSerializable
      *
      * @return $required_android string
     */
-    public function getRequiredAndroid(){
+    public function getRequiredAndroid()
+    {
         return $this->required_android;
     }
 
@@ -333,7 +354,8 @@ class App implements \JsonSerializable
      *
      * @param $required_android string
     */
-    public function setRequiredAndroid($required_android){
+    public function setRequiredAndroid($required_android)
+    {
         $required_android=trim($required_android);
         $this->required_android = $required_android;
     }
@@ -343,7 +365,8 @@ class App implements \JsonSerializable
      *
      * @return $content_rating string
     */
-    public function getContentRating(){
+    public function getContentRating()
+    {
         return $this->content_rating;
     }
 
@@ -352,8 +375,49 @@ class App implements \JsonSerializable
      *
      * @param $content_rating string
     */
-    public function setContentRating($content_rating){
+    public function setContentRating($content_rating)
+    {
         $this->content_rating = $content_rating;
+    }
+
+    /**
+     * Gets the features
+     *
+     * @return $features string
+    */
+    public function getFeatures()
+    {
+        return $this->features;
+    }
+
+    /**
+     * Sets the features
+     *
+     * @param $features string
+    */
+    public function setFeatures($features)
+    {
+        $this->features = $features;
+    }
+
+    /**
+     * Gets the in-apps prices
+     *
+     * @return $in_app_prices string
+    */
+    public function getInAppPrices()
+    {
+        return $this->in_app_prices;
+    }
+
+    /**
+     * Sets the in-app prices
+     *
+     * @param $in_app_prices string
+    */
+    public function setInAppPrices($in_app_prices)
+    {
+        $this->in_app_prices = $in_app_prices;
     }
 
     public function JsonSerialize()
