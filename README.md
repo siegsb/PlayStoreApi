@@ -107,6 +107,11 @@ $app->getVersion();
 $app->getRequiredAndroid();  
 // Returns the content rating  
 $app->getContentRating();  
+// Returns the features of the app, e.g. if have ads or in-app purchases. 
+// returns an array. 
+$app->getFeatures();  
+// Returns the values for the in-app purchases if apply. 
+$app->getInAppPrices();  
 ```
 
 ### Artist
